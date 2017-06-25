@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DryIoc.dll" Version="2.11.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GFT.DeveloperPracticum.Abstractions.Services\GFT.DeveloperPracticum.Abstractions.Services.csproj" />
+    <ProjectReference Include="..\GFT.DeveloperPracticum.Services\GFT.DeveloperPracticum.Services.csproj" />
+  </ItemGroup>
+
+</Project>
