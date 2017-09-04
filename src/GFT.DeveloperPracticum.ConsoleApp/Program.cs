@@ -28,7 +28,7 @@ namespace GFT.DeveloperPracticum.ConsoleApp
 
                 ServicesBinder.Bind(container);
 
-               
+
                 var menuData = new Dictionary<(TimeOfDayType, DishType), Dish>
                 {
                     { (TimeOfDayType.Morning, DishType.Entree),  new Dish("eggs",   AllowedOrderType.Single)   },

@@ -26,36 +26,23 @@ namespace GFT.DeveloperPracticum.Services
                 ?? throw new ArgumentNullException(nameof(outputProcessorService));
         }
 
+
+
         public Try<Exception, string> Process(
             IReadOnlyDictionary<(TimeOfDayType, DishType), Dish> menu,
             string input
-        )
-        {
-            var setupResult =_inputProcessorService.Setup(menu);
-
-            return setupResult.Match(
+        ) =>
+            _inputProcessorService.Setup(menu).Match(
                 failure: ex => $"Setup failed, reason: { ex.Message }",
                 success: unit =>
-                {
-                    var inputProcessResult = _inputProcessorService.Process(input);
-
-                    return inputProcessResult.Match(
-                        failure: ex => {
-                            //log ex
-                            return $"error";
-                        }, 
-                        success: inputParsed => 
-                        {
-                            var outputProcessResult = _outputProcessorService.Process(inputParsed);
-
-                            return outputProcessResult.Match(
+                    _inputProcessorService.Process(input).Match(
+                        failure: ex => $"error",
+                        success: inputParsed =>
+                            _outputProcessorService.Process(inputParsed).Match(
                                 failure: ex => $"Output processing failed, reason: { ex.Message }",
                                 success: output => output
-                            );
-                        }
-                    );
-                }
+                            )
+                    )
             );
-        }
     }
 }

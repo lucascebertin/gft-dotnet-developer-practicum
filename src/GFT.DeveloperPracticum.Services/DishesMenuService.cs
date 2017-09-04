@@ -8,7 +8,7 @@ namespace GFT.DeveloperPracticum.Services
 {
     public sealed class DishesMenuService : IDishesMenuService
     {
-        private bool disposedValue = false;
+        private bool disposedValue;
 
         private readonly IDictionary<(TimeOfDayType, DishType), Dish> _dishes =
             new Dictionary<(TimeOfDayType, DishType), Dish>();

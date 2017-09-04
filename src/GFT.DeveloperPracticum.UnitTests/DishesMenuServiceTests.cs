@@ -60,7 +60,7 @@ namespace GFT.DeveloperPracticum.UnitTests
             }
         }
 
-      
+
 
         [Fact]
         public void Should_has_dishes_when_a_dish_is_added()

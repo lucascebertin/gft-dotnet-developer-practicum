@@ -22,7 +22,7 @@ namespace GFT.DeveloperPracticum.UnitTests
 
             var input = new InputProcessResult(
                 false,
-                new Dictionary<(DishType, string), int>()
+                new Dictionary<(DishType, string), int>
                 {
                     { (DishType.Entree, "eggs"), 1 },
                     { (DishType.Side, "toast"), 1 },
@@ -76,7 +76,7 @@ namespace GFT.DeveloperPracticum.UnitTests
 
             var input = new InputProcessResult(
                 false,
-                new Dictionary<(DishType, string), int>()
+                new Dictionary<(DishType, string), int>
                 {
                     { (DishType.Entree, "eggs"), 1 },
                     { (DishType.Side, "toast"), 1 },
@@ -119,7 +119,7 @@ namespace GFT.DeveloperPracticum.UnitTests
 
             var input = new InputProcessResult(
                 false,
-                new Dictionary<(DishType, string), int>()
+                new Dictionary<(DishType, string), int>
                 {
                     { (DishType.Entree, "eggs"), -1 },
                     { (DishType.Side, "toast"), -2 },

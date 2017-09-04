@@ -106,7 +106,7 @@ namespace GFT.DeveloperPracticum.Services
             }
 
             return new InputProcessResult(
-                hasInvalidInput, 
+                hasInvalidInput,
                 parsedInput
             );
         }
@@ -120,8 +120,8 @@ namespace GFT.DeveloperPracticum.Services
 
             return _availableTimesOfDay.FirstOrDefault(
                 str => string.Compare(
-                    firstInput, 
-                    str, 
+                    firstInput,
+                    str,
                     StringComparison.CurrentCultureIgnoreCase
                 ) == 0
             );

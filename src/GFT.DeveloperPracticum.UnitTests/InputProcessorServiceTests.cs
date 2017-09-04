@@ -34,10 +34,10 @@ namespace GFT.DeveloperPracticum.UnitTests
         public void Should_return_empty_timeOfDay_when_provided_a_null()
         {
             //arrange
-            var input = default(string[]);
+            const string[] input = default(string[]);
             var dishesMenuServiceFake = A.Fake<IDishesMenuService>();
             var inputProcessorService = new InputProcessorService(dishesMenuServiceFake);
-            var morningText = default(string);
+            const string morningText = default(string);
 
             //act
             var timeOfDay = inputProcessorService.ParseTimeOfDay(input);
@@ -53,7 +53,7 @@ namespace GFT.DeveloperPracticum.UnitTests
             var input = new string[] { "evening" };
             var dishesMenuServiceFake = A.Fake<IDishesMenuService>();
             var inputProcessorService = new InputProcessorService(dishesMenuServiceFake);
-            var morningText = default(string);
+            const string morningText = default(string);
 
             //act
             var timeOfDay = inputProcessorService.ParseTimeOfDay(input);
@@ -87,7 +87,7 @@ namespace GFT.DeveloperPracticum.UnitTests
             //arrange
             var keyPair =(TimeOfDayType.Morning, DishType.Entree);
             var dish = new Dish("eggs", AllowedOrderType.Single);
-            var dict = new Dictionary<(TimeOfDayType, DishType), Dish>() {
+            var dict = new Dictionary<(TimeOfDayType, DishType), Dish> {
                 { keyPair, dish }
             };
 
@@ -117,8 +117,8 @@ namespace GFT.DeveloperPracticum.UnitTests
         {
             //arrange
             var dishes = new Dictionary<(DishType, string), int>();
-            var timeOfDay = TimeOfDayType.Morning;
-            var dishType = DishType.Drink;
+            const TimeOfDayType timeOfDay = TimeOfDayType.Morning;
+            const DishType dishType = DishType.Drink;
             var dish = new Dish("coffee", AllowedOrderType.Multiple);
 
             var dishesMenuServiceFake = A.Fake<IDishesMenuService>();
@@ -147,14 +147,14 @@ namespace GFT.DeveloperPracticum.UnitTests
             const TimeOfDayType timeOfDay = TimeOfDayType.Morning;
             const int nextAmountToAdd = 2;
 
-            var dishes = new Dictionary<(DishType, string), int>() {
+            var dishes = new Dictionary<(DishType, string), int> {
                 { (dishType, dish.Name), 1 }
             };
 
             var dishesMenuServiceFake = A.Fake<IDishesMenuService>();
             A.CallTo(() => dishesMenuServiceFake.IsValidAmount(
-                timeOfDay, 
-                dishType, 
+                timeOfDay,
+                dishType,
                 nextAmountToAdd)
             ).Returns(true);
 
@@ -176,12 +176,12 @@ namespace GFT.DeveloperPracticum.UnitTests
         public void Should_not_update_a_dish_when_the_name_already_exists_and_disallow_multiple_orders()
         {
             //arrange
-            var dishType = DishType.Drink;
+            const DishType dishType = DishType.Drink;
             var dish = new Dish("eggs", AllowedOrderType.Single);
-            var timeOfDay = TimeOfDayType.Morning;
-            var nextAmountToAdd = 2;
+            const TimeOfDayType timeOfDay = TimeOfDayType.Morning;
+            const int nextAmountToAdd = 2;
 
-            var dishes = new Dictionary<(DishType, string), int>() {
+            var dishes = new Dictionary<(DishType, string), int> {
                 { (dishType, dish.Name), 1 }
             };
 
@@ -215,7 +215,7 @@ namespace GFT.DeveloperPracticum.UnitTests
             const TimeOfDayType timeOfDay = TimeOfDayType.Morning;
             const int nextAmountToAdd = 2;
 
-            var dishes = new Dictionary<(DishType, string), int>() {
+            var dishes = new Dictionary<(DishType, string), int> {
                 { (dishType, dishName), 1 }
             };
 
@@ -255,7 +255,7 @@ namespace GFT.DeveloperPracticum.UnitTests
             const string input = "morning, 1, 2, 3";
             var exception = default(Exception);
             var processResult = default(InputProcessResult);
-            var expectedOutput = new Dictionary<(DishType, string), int>()
+            var expectedOutput = new Dictionary<(DishType, string), int>
             {
                 { (DishType.Entree, "eggs"), 1 },
                 { (DishType.Side, "toast"), 1 },
@@ -291,7 +291,7 @@ namespace GFT.DeveloperPracticum.UnitTests
             const string input = "morning, 2, 1, 3";
             var exception = default(Exception);
             var processResult = default(InputProcessResult);
-            var expectedOutput = new Dictionary<(DishType, string), int>()
+            var expectedOutput = new Dictionary<(DishType, string), int>
             {
                 { (DishType.Entree, "eggs"), 1 },
                 { (DishType.Side, "toast"), 1 },
@@ -324,10 +324,10 @@ namespace GFT.DeveloperPracticum.UnitTests
             A.CallTo(() => dishesMenuServiceFake.FindDish(TimeOfDayType.Morning, DishType.Drink)).Returns("coffee");
 
             var inputProcessorService = new InputProcessorService(dishesMenuServiceFake);
-            var input = "morning, 1, 2, 3, 4";
+            const string input = "morning, 1, 2, 3, 4";
             var exception = default(Exception);
             var processResult = default(InputProcessResult);
-            var expectedOutput = new Dictionary<(DishType, string), int>()
+            var expectedOutput = new Dictionary<(DishType, string), int>
             {
                 {(DishType.Entree, "eggs"), 1 },
                 {(DishType.Side, "toast"), 1 },
@@ -352,7 +352,7 @@ namespace GFT.DeveloperPracticum.UnitTests
         public void Should_the_input_be_processed_with_success_when_looks_like_the_fourth_test_sample_input()
         {
             //arrange
-            var timeOfDay = TimeOfDayType.Morning;
+            const TimeOfDayType timeOfDay = TimeOfDayType.Morning;
 
             var dishesMenuServiceFake = A.Fake<IDishesMenuService>();
             A.CallTo(() => dishesMenuServiceFake.HasDishes()).Returns(true);
@@ -366,10 +366,10 @@ namespace GFT.DeveloperPracticum.UnitTests
             A.CallTo(() => dishesMenuServiceFake.FindDish(timeOfDay, DishType.Drink)).Returns("coffee");
 
             var inputProcessorService = new InputProcessorService(dishesMenuServiceFake);
-            var input = "morning, 1, 2, 3, 3, 3";
+            const string input = "morning, 1, 2, 3, 3, 3";
             var exception = default(Exception);
             var processResult = default(InputProcessResult);
-            var expectedOutput = new Dictionary<(DishType, string), int>()
+            var expectedOutput = new Dictionary<(DishType, string), int>
             {
                 {(DishType.Entree, "eggs"), 1 },
                 {(DishType.Side, "toast"), 1 },
@@ -403,10 +403,10 @@ namespace GFT.DeveloperPracticum.UnitTests
             A.CallTo(() => dishesMenuServiceFake.FindDish(TimeOfDayType.Night, DishType.Dessert)).Returns("cake");
 
             var inputProcessorService = new InputProcessorService(dishesMenuServiceFake);
-            var input = "night, 1, 2, 3, 4";
+            const string input = "night, 1, 2, 3, 4";
             var exception = default(Exception);
             var processResult = default(InputProcessResult);
-            var expectedOutput = new Dictionary<(DishType, string), int>()
+            var expectedOutput = new Dictionary<(DishType, string), int>
             {
                 {(DishType.Entree, "steak"), 1 },
                 {(DishType.Side, "potato"), 1 },
@@ -432,7 +432,7 @@ namespace GFT.DeveloperPracticum.UnitTests
         public void Should_the_input_be_processed_with_success_when_looks_like_the_sixth_test_sample_input()
         {
             //arrange
-            var timeOfDay = TimeOfDayType.Night;
+            const TimeOfDayType timeOfDay = TimeOfDayType.Night;
             var dishesMenuServiceFake = A.Fake<IDishesMenuService>();
             A.CallTo(() => dishesMenuServiceFake.HasDishes()).Returns(true);
 
@@ -447,7 +447,7 @@ namespace GFT.DeveloperPracticum.UnitTests
             A.CallTo(() => dishesMenuServiceFake.FindDish(TimeOfDayType.Night, DishType.Dessert)).Returns("cake");
 
             var inputProcessorService = new InputProcessorService(dishesMenuServiceFake);
-            var input = "night, 1, 2, 2, 4";
+            const string input = "night, 1, 2, 2, 4";
             var exception = default(Exception);
             var processResult = default(InputProcessResult);
             var expectedOutput = new Dictionary<(DishType, string), int>
@@ -483,7 +483,7 @@ namespace GFT.DeveloperPracticum.UnitTests
             A.CallTo(() => dishesMenuServiceFake.FindDish(TimeOfDayType.Morning, DishType.Drink)).Returns("coffee");
 
             var inputProcessorService = new InputProcessorService(dishesMenuServiceFake);
-            var input = "MoRnInG, 1, 2, 3";
+            const string input = "MoRnInG, 1, 2, 3";
             var exception = default(Exception);
             var processResult = default(InputProcessResult);
             var expectedOutput = new Dictionary<(DishType, string), int>
@@ -519,7 +519,7 @@ namespace GFT.DeveloperPracticum.UnitTests
             A.CallTo(() => dishesMenuServiceFake.FindDish(TimeOfDayType.Morning, DishType.Drink)).Returns("coffee");
 
             var inputProcessorService = new InputProcessorService(dishesMenuServiceFake);
-            var input = "MoRnInG, 2, 1, 3";
+            const string input = "MoRnInG, 2, 1, 3";
             var exception = default(Exception);
             var processResult = default(InputProcessResult);
             var expectedOutput = new Dictionary<(DishType, string), int>
@@ -555,10 +555,10 @@ namespace GFT.DeveloperPracticum.UnitTests
             A.CallTo(() => dishesMenuServiceFake.FindDish(TimeOfDayType.Morning, DishType.Drink)).Returns("coffee");
 
             var inputProcessorService = new InputProcessorService(dishesMenuServiceFake);
-            var input = "MoRnInG, 1, 2, 3, 4";
+            const string input = "MoRnInG, 1, 2, 3, 4";
             var exception = default(Exception);
             var processResult = default(InputProcessResult);
-            var expectedOutput = new Dictionary<(DishType, string), int>()
+            var expectedOutput = new Dictionary<(DishType, string), int>
             {
                 {(DishType.Entree, "eggs"), 1 },
                 {(DishType.Side, "toast"), 1 },
@@ -583,7 +583,7 @@ namespace GFT.DeveloperPracticum.UnitTests
         public void Should_the_input_be_case_insentive_and_be_processed_with_success_when_looks_like_the_fourth_test_sample_input()
         {
             //arrange
-            var timeOfDay = TimeOfDayType.Morning;
+            const TimeOfDayType timeOfDay = TimeOfDayType.Morning;
 
             var dishesMenuServiceFake = A.Fake<IDishesMenuService>();
             A.CallTo(() => dishesMenuServiceFake.HasDishes()).Returns(true);
@@ -597,7 +597,7 @@ namespace GFT.DeveloperPracticum.UnitTests
             A.CallTo(() => dishesMenuServiceFake.FindDish(timeOfDay, DishType.Drink)).Returns("coffee");
 
             var inputProcessorService = new InputProcessorService(dishesMenuServiceFake);
-            var input = "MoRnInG, 1, 2, 3, 3, 3";
+            const string input = "MoRnInG, 1, 2, 3, 3, 3";
             var exception = default(Exception);
             var processResult = default(InputProcessResult);
             var expectedOutput = new Dictionary<(DishType, string), int>
@@ -634,7 +634,7 @@ namespace GFT.DeveloperPracticum.UnitTests
             A.CallTo(() => dishesMenuServiceFake.FindDish(TimeOfDayType.Night, DishType.Dessert)).Returns("cake");
 
             var inputProcessorService = new InputProcessorService(dishesMenuServiceFake);
-            var input = "NiGhT, 1, 2, 3, 4";
+            const string input = "NiGhT, 1, 2, 3, 4";
             var exception = default(Exception);
             var processResult = default(InputProcessResult);
             var expectedOutput = new Dictionary<(DishType, string), int>
@@ -663,7 +663,7 @@ namespace GFT.DeveloperPracticum.UnitTests
         public void Should_the_input_be_case_insentive_and_be_processed_with_success_when_looks_like_the_sixth_test_sample_input()
         {
             //arrange
-            var timeOfDay = TimeOfDayType.Night;
+            const TimeOfDayType timeOfDay = TimeOfDayType.Night;
             var dishesMenuServiceFake = A.Fake<IDishesMenuService>();
             A.CallTo(() => dishesMenuServiceFake.HasDishes()).Returns(true);
 
@@ -678,10 +678,10 @@ namespace GFT.DeveloperPracticum.UnitTests
             A.CallTo(() => dishesMenuServiceFake.FindDish(TimeOfDayType.Night, DishType.Dessert)).Returns("cake");
 
             var inputProcessorService = new InputProcessorService(dishesMenuServiceFake);
-            var input = "NiGhT, 1, 2, 2, 4";
+            const string input = "NiGhT, 1, 2, 2, 4";
             var exception = default(Exception);
             var processResult = default(InputProcessResult);
-            var expectedOutput = new Dictionary<(DishType, string), int>()
+            var expectedOutput = new Dictionary<(DishType, string), int>
             {
                 { (DishType.Entree, "steak"), 1 },
                 { (DishType.Side, "potato"), 2 },
@@ -706,7 +706,7 @@ namespace GFT.DeveloperPracticum.UnitTests
         public void Should_not_the_input_be_processed_with_success_when_timeOfDay_is_not_mapped()
         {
             //arrange
-            var timeOfDay = TimeOfDayType.Night;
+            const TimeOfDayType timeOfDay = TimeOfDayType.Night;
             var dishesMenuServiceFake = A.Fake<IDishesMenuService>();
             A.CallTo(() => dishesMenuServiceFake.HasDishes()).Returns(true);
 
@@ -721,10 +721,10 @@ namespace GFT.DeveloperPracticum.UnitTests
             A.CallTo(() => dishesMenuServiceFake.FindDish(TimeOfDayType.Night, DishType.Dessert)).Returns("cake");
 
             var inputProcessorService = new InputProcessorService(dishesMenuServiceFake);
-            var input = "afternoon, 1, 2, 2, 4";
+            const string input = "afternoon, 1, 2, 2, 4";
             var exception = default(Exception);
             var processResult = default(InputProcessResult);
-            var expectedOutput = new Dictionary<(DishType, string), int>()
+            var expectedOutput = new Dictionary<(DishType, string), int>
             {
                 { (DishType.Entree, "steak"), 1 },
                 { (DishType.Side, "potato"), 2 },
@@ -747,7 +747,7 @@ namespace GFT.DeveloperPracticum.UnitTests
         public void Should_not_the_input_be_processed_with_success_when_null()
         {
             //arrange
-            var timeOfDay = TimeOfDayType.Night;
+            const TimeOfDayType timeOfDay = TimeOfDayType.Night;
             var dishesMenuServiceFake = A.Fake<IDishesMenuService>();
             A.CallTo(() => dishesMenuServiceFake.HasDishes()).Returns(true);
 
@@ -762,7 +762,7 @@ namespace GFT.DeveloperPracticum.UnitTests
             A.CallTo(() => dishesMenuServiceFake.FindDish(TimeOfDayType.Night, DishType.Dessert)).Returns("cake");
 
             var inputProcessorService = new InputProcessorService(dishesMenuServiceFake);
-            var input = default(string);
+            const string input = default(string);
             var exception = default(Exception);
             var processResult = default(InputProcessResult);
             var expectedOutput = new Dictionary<(DishType, string), int>
@@ -786,7 +786,7 @@ namespace GFT.DeveloperPracticum.UnitTests
         public void Should_not_the_input_be_processed_with_success_when_without_at_least_one_selection()
         {
             //arrange
-            var timeOfDay = TimeOfDayType.Night;
+            const TimeOfDayType timeOfDay = TimeOfDayType.Night;
             var dishesMenuServiceFake = A.Fake<IDishesMenuService>();
             A.CallTo(() => dishesMenuServiceFake.HasDishes()).Returns(true);
 
@@ -801,10 +801,10 @@ namespace GFT.DeveloperPracticum.UnitTests
             A.CallTo(() => dishesMenuServiceFake.FindDish(TimeOfDayType.Night, DishType.Dessert)).Returns("cake");
 
             var inputProcessorService = new InputProcessorService(dishesMenuServiceFake);
-            var input = "morning";
+            const string input = "morning";
             var exception = default(Exception);
             var processResult = default(InputProcessResult);
-            var expectedOutput = new Dictionary<(DishType, string), int>()
+            var expectedOutput = new Dictionary<(DishType, string), int>
             {
                 { (DishType.Entree, "steak"), 1 },
                 { (DishType.Side, "potato"), 2 },
