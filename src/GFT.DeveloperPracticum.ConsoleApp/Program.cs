@@ -28,15 +28,16 @@ namespace GFT.DeveloperPracticum.ConsoleApp
 
                 ServicesBinder.Bind(container);
 
-                var menuData = new Dictionary<Tuple<TimeOfDayType, DishType>, Dish>()
+               
+                var menuData = new Dictionary<(TimeOfDayType, DishType), Dish>
                 {
-                    { new Tuple<TimeOfDayType, DishType>(TimeOfDayType.Morning, DishType.Entree),  new Dish("eggs",   AllowedOrderType.Single)   },
-                    { new Tuple<TimeOfDayType, DishType>(TimeOfDayType.Morning, DishType.Side),    new Dish("toast",  AllowedOrderType.Single)   },
-                    { new Tuple<TimeOfDayType, DishType>(TimeOfDayType.Morning, DishType.Drink),   new Dish("coffee", AllowedOrderType.Multiple) },
-                    { new Tuple<TimeOfDayType, DishType>(TimeOfDayType.Night,   DishType.Entree),  new Dish("steak",  AllowedOrderType.Single)   },
-                    { new Tuple<TimeOfDayType, DishType>(TimeOfDayType.Night,   DishType.Side),    new Dish("potato", AllowedOrderType.Multiple) },
-                    { new Tuple<TimeOfDayType, DishType>(TimeOfDayType.Night,   DishType.Drink),   new Dish("wine",   AllowedOrderType.Single)   },
-                    { new Tuple<TimeOfDayType, DishType>(TimeOfDayType.Night,   DishType.Dessert), new Dish("cake",   AllowedOrderType.Single)   }
+                    { (TimeOfDayType.Morning, DishType.Entree),  new Dish("eggs",   AllowedOrderType.Single)   },
+                    { (TimeOfDayType.Morning, DishType.Side),    new Dish("toast",  AllowedOrderType.Single)   },
+                    { (TimeOfDayType.Morning, DishType.Drink),   new Dish("coffee", AllowedOrderType.Multiple) },
+                    { (TimeOfDayType.Night,   DishType.Entree),  new Dish("steak",  AllowedOrderType.Single)   },
+                    { (TimeOfDayType.Night,   DishType.Side),    new Dish("potato", AllowedOrderType.Multiple) },
+                    { (TimeOfDayType.Night,   DishType.Drink),   new Dish("wine",   AllowedOrderType.Single)   },
+                    { (TimeOfDayType.Night,   DishType.Dessert), new Dish("cake",   AllowedOrderType.Single)   }
                 };
 
                 var inputProcesser = container.Resolve<IProcessManagerService>();

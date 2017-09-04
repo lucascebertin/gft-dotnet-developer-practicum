@@ -85,9 +85,9 @@ namespace GFT.DeveloperPracticum.UnitTests
         public void Should_return_an_unit_when_provided_a_correct_menu_item()
         {
             //arrange
-            var keyPair = new Tuple<TimeOfDayType, DishType>(TimeOfDayType.Morning, DishType.Entree);
+            var keyPair =(TimeOfDayType.Morning, DishType.Entree);
             var dish = new Dish("eggs", AllowedOrderType.Single);
-            var dict = new Dictionary<Tuple<TimeOfDayType, DishType>, Dish>() {
+            var dict = new Dictionary<(TimeOfDayType, DishType), Dish>() {
                 { keyPair, dish }
             };
 
@@ -116,7 +116,7 @@ namespace GFT.DeveloperPracticum.UnitTests
         public void Should_add_the_dish_when_this_is_the_first()
         {
             //arrange
-            var dishes = new Dictionary<Tuple<DishType, string>, int>();
+            var dishes = new Dictionary<(DishType, string), int>();
             var timeOfDay = TimeOfDayType.Morning;
             var dishType = DishType.Drink;
             var dish = new Dish("coffee", AllowedOrderType.Multiple);
@@ -142,13 +142,13 @@ namespace GFT.DeveloperPracticum.UnitTests
         public void Should_update_a_dish_when_the_name_already_exists_and_allow_multiple_orders()
         {
             //arrange
-            var dishType = DishType.Drink;
+            const DishType dishType = DishType.Drink;
             var dish = new Dish("coffee", AllowedOrderType.Multiple);
-            var timeOfDay = TimeOfDayType.Morning;
-            var nextAmountToAdd = 2;
+            const TimeOfDayType timeOfDay = TimeOfDayType.Morning;
+            const int nextAmountToAdd = 2;
 
-            var dishes = new Dictionary<Tuple<DishType, string>, int>() {
-                { new Tuple<DishType, string>(dishType, dish.Name), 1 }
+            var dishes = new Dictionary<(DishType, string), int>() {
+                { (dishType, dish.Name), 1 }
             };
 
             var dishesMenuServiceFake = A.Fake<IDishesMenuService>();
@@ -181,8 +181,8 @@ namespace GFT.DeveloperPracticum.UnitTests
             var timeOfDay = TimeOfDayType.Morning;
             var nextAmountToAdd = 2;
 
-            var dishes = new Dictionary<Tuple<DishType, string>, int>() {
-                { new Tuple<DishType, string>(dishType, dish.Name), 1 }
+            var dishes = new Dictionary<(DishType, string), int>() {
+                { (dishType, dish.Name), 1 }
             };
 
             var dishesMenuServiceFake = A.Fake<IDishesMenuService>();
@@ -210,13 +210,13 @@ namespace GFT.DeveloperPracticum.UnitTests
         public void Should_not_update_a_dish_when_the_dish_name_is_null()
         {
             //arrange
-            var dishType = DishType.Drink;
-            var dishName = default(string);
-            var timeOfDay = TimeOfDayType.Morning;
-            var nextAmountToAdd = 2;
+            const DishType dishType = DishType.Drink;
+            const string dishName = default(string);
+            const TimeOfDayType timeOfDay = TimeOfDayType.Morning;
+            const int nextAmountToAdd = 2;
 
-            var dishes = new Dictionary<Tuple<DishType, string>, int>() {
-                { new Tuple<DishType, string>(dishType, dishName), 1 }
+            var dishes = new Dictionary<(DishType, string), int>() {
+                { (dishType, dishName), 1 }
             };
 
             var dishesMenuServiceFake = A.Fake<IDishesMenuService>();
@@ -252,14 +252,14 @@ namespace GFT.DeveloperPracticum.UnitTests
             A.CallTo(() => dishesMenuServiceFake.FindDish(TimeOfDayType.Morning, DishType.Drink)).Returns("coffee");
 
             var inputProcessorService = new InputProcessorService(dishesMenuServiceFake);
-            var input = "morning, 1, 2, 3";
+            const string input = "morning, 1, 2, 3";
             var exception = default(Exception);
             var processResult = default(InputProcessResult);
-            var expectedOutput = new Dictionary<Tuple<DishType, string>, int>()
+            var expectedOutput = new Dictionary<(DishType, string), int>()
             {
-                { new Tuple<DishType, string>(DishType.Entree, "eggs"), 1 },
-                { new Tuple<DishType, string>(DishType.Side, "toast"), 1 },
-                { new Tuple<DishType, string>(DishType.Drink, "coffee"), 1 }
+                { (DishType.Entree, "eggs"), 1 },
+                { (DishType.Side, "toast"), 1 },
+                { (DishType.Drink, "coffee"), 1 }
             };
 
             //act
@@ -288,14 +288,14 @@ namespace GFT.DeveloperPracticum.UnitTests
             A.CallTo(() => dishesMenuServiceFake.FindDish(TimeOfDayType.Morning, DishType.Drink)).Returns("coffee");
 
             var inputProcessorService = new InputProcessorService(dishesMenuServiceFake);
-            var input = "morning, 2, 1, 3";
+            const string input = "morning, 2, 1, 3";
             var exception = default(Exception);
             var processResult = default(InputProcessResult);
-            var expectedOutput = new Dictionary<Tuple<DishType, string>, int>()
+            var expectedOutput = new Dictionary<(DishType, string), int>()
             {
-                { new Tuple<DishType, string>(DishType.Entree, "eggs"), 1 },
-                { new Tuple<DishType, string>(DishType.Side, "toast"), 1 },
-                { new Tuple<DishType, string>(DishType.Drink, "coffee"), 1 }
+                { (DishType.Entree, "eggs"), 1 },
+                { (DishType.Side, "toast"), 1 },
+                { (DishType.Drink, "coffee"), 1 }
             };
 
             //act
@@ -327,11 +327,11 @@ namespace GFT.DeveloperPracticum.UnitTests
             var input = "morning, 1, 2, 3, 4";
             var exception = default(Exception);
             var processResult = default(InputProcessResult);
-            var expectedOutput = new Dictionary<Tuple<DishType, string>, int>()
+            var expectedOutput = new Dictionary<(DishType, string), int>()
             {
-                { new Tuple<DishType, string>(DishType.Entree, "eggs"), 1 },
-                { new Tuple<DishType, string>(DishType.Side, "toast"), 1 },
-                { new Tuple<DishType, string>(DishType.Drink, "coffee"), 1 }
+                {(DishType.Entree, "eggs"), 1 },
+                {(DishType.Side, "toast"), 1 },
+                {(DishType.Drink, "coffee"), 1 }
             };
 
             //act
@@ -369,11 +369,11 @@ namespace GFT.DeveloperPracticum.UnitTests
             var input = "morning, 1, 2, 3, 3, 3";
             var exception = default(Exception);
             var processResult = default(InputProcessResult);
-            var expectedOutput = new Dictionary<Tuple<DishType, string>, int>()
+            var expectedOutput = new Dictionary<(DishType, string), int>()
             {
-                { new Tuple<DishType, string>(DishType.Entree, "eggs"), 1 },
-                { new Tuple<DishType, string>(DishType.Side, "toast"), 1 },
-                { new Tuple<DishType, string>(DishType.Drink, "coffee"), 3 }
+                {(DishType.Entree, "eggs"), 1 },
+                {(DishType.Side, "toast"), 1 },
+                {(DishType.Drink, "coffee"), 3 }
             };
 
             //act
@@ -406,12 +406,12 @@ namespace GFT.DeveloperPracticum.UnitTests
             var input = "night, 1, 2, 3, 4";
             var exception = default(Exception);
             var processResult = default(InputProcessResult);
-            var expectedOutput = new Dictionary<Tuple<DishType, string>, int>()
+            var expectedOutput = new Dictionary<(DishType, string), int>()
             {
-                { new Tuple<DishType, string>(DishType.Entree, "steak"), 1 },
-                { new Tuple<DishType, string>(DishType.Side, "potato"), 1 },
-                { new Tuple<DishType, string>(DishType.Drink, "wine"), 1 },
-                { new Tuple<DishType, string>(DishType.Dessert, "cake"), 1 }
+                {(DishType.Entree, "steak"), 1 },
+                {(DishType.Side, "potato"), 1 },
+                {(DishType.Drink, "wine"), 1 },
+                {(DishType.Dessert, "cake"), 1 }
             };
 
             //act
@@ -450,11 +450,11 @@ namespace GFT.DeveloperPracticum.UnitTests
             var input = "night, 1, 2, 2, 4";
             var exception = default(Exception);
             var processResult = default(InputProcessResult);
-            var expectedOutput = new Dictionary<Tuple<DishType, string>, int>()
+            var expectedOutput = new Dictionary<(DishType, string), int>
             {
-                { new Tuple<DishType, string>(DishType.Entree, "steak"), 1 },
-                { new Tuple<DishType, string>(DishType.Side, "potato"), 2 },
-                { new Tuple<DishType, string>(DishType.Dessert, "cake"), 1 }
+                { (DishType.Entree, "steak"), 1 },
+                { (DishType.Side, "potato"), 2 },
+                { (DishType.Dessert, "cake"), 1 }
             };
 
             //act
@@ -486,11 +486,11 @@ namespace GFT.DeveloperPracticum.UnitTests
             var input = "MoRnInG, 1, 2, 3";
             var exception = default(Exception);
             var processResult = default(InputProcessResult);
-            var expectedOutput = new Dictionary<Tuple<DishType, string>, int>()
+            var expectedOutput = new Dictionary<(DishType, string), int>
             {
-                { new Tuple<DishType, string>(DishType.Entree, "eggs"), 1 },
-                { new Tuple<DishType, string>(DishType.Side, "toast"), 1 },
-                { new Tuple<DishType, string>(DishType.Drink, "coffee"), 1 }
+                {(DishType.Entree, "eggs"), 1 },
+                {(DishType.Side, "toast"), 1 },
+                {(DishType.Drink, "coffee"), 1 }
             };
 
             //act
@@ -522,11 +522,11 @@ namespace GFT.DeveloperPracticum.UnitTests
             var input = "MoRnInG, 2, 1, 3";
             var exception = default(Exception);
             var processResult = default(InputProcessResult);
-            var expectedOutput = new Dictionary<Tuple<DishType, string>, int>()
+            var expectedOutput = new Dictionary<(DishType, string), int>
             {
-                { new Tuple<DishType, string>(DishType.Entree, "eggs"), 1 },
-                { new Tuple<DishType, string>(DishType.Side, "toast"), 1 },
-                { new Tuple<DishType, string>(DishType.Drink, "coffee"), 1 }
+                { (DishType.Entree, "eggs"), 1 },
+                { (DishType.Side, "toast"), 1 },
+                { (DishType.Drink, "coffee"), 1 }
             };
 
             //act
@@ -558,11 +558,11 @@ namespace GFT.DeveloperPracticum.UnitTests
             var input = "MoRnInG, 1, 2, 3, 4";
             var exception = default(Exception);
             var processResult = default(InputProcessResult);
-            var expectedOutput = new Dictionary<Tuple<DishType, string>, int>()
+            var expectedOutput = new Dictionary<(DishType, string), int>()
             {
-                { new Tuple<DishType, string>(DishType.Entree, "eggs"), 1 },
-                { new Tuple<DishType, string>(DishType.Side, "toast"), 1 },
-                { new Tuple<DishType, string>(DishType.Drink, "coffee"), 1 }
+                {(DishType.Entree, "eggs"), 1 },
+                {(DishType.Side, "toast"), 1 },
+                {(DishType.Drink, "coffee"), 1 }
             };
 
             //act
@@ -600,11 +600,11 @@ namespace GFT.DeveloperPracticum.UnitTests
             var input = "MoRnInG, 1, 2, 3, 3, 3";
             var exception = default(Exception);
             var processResult = default(InputProcessResult);
-            var expectedOutput = new Dictionary<Tuple<DishType, string>, int>()
+            var expectedOutput = new Dictionary<(DishType, string), int>
             {
-                { new Tuple<DishType, string>(DishType.Entree, "eggs"), 1 },
-                { new Tuple<DishType, string>(DishType.Side, "toast"), 1 },
-                { new Tuple<DishType, string>(DishType.Drink, "coffee"), 3 }
+                { (DishType.Entree, "eggs"), 1 },
+                { (DishType.Side, "toast"), 1 },
+                { (DishType.Drink, "coffee"), 3 }
             };
 
             //act
@@ -637,12 +637,12 @@ namespace GFT.DeveloperPracticum.UnitTests
             var input = "NiGhT, 1, 2, 3, 4";
             var exception = default(Exception);
             var processResult = default(InputProcessResult);
-            var expectedOutput = new Dictionary<Tuple<DishType, string>, int>()
+            var expectedOutput = new Dictionary<(DishType, string), int>
             {
-                { new Tuple<DishType, string>(DishType.Entree, "steak"), 1 },
-                { new Tuple<DishType, string>(DishType.Side, "potato"), 1 },
-                { new Tuple<DishType, string>(DishType.Drink, "wine"), 1 },
-                { new Tuple<DishType, string>(DishType.Dessert, "cake"), 1 }
+                { (DishType.Entree, "steak"), 1 },
+                { (DishType.Side, "potato"), 1 },
+                { (DishType.Drink, "wine"), 1 },
+                { (DishType.Dessert, "cake"), 1 }
             };
 
             //act
@@ -681,11 +681,11 @@ namespace GFT.DeveloperPracticum.UnitTests
             var input = "NiGhT, 1, 2, 2, 4";
             var exception = default(Exception);
             var processResult = default(InputProcessResult);
-            var expectedOutput = new Dictionary<Tuple<DishType, string>, int>()
+            var expectedOutput = new Dictionary<(DishType, string), int>()
             {
-                { new Tuple<DishType, string>(DishType.Entree, "steak"), 1 },
-                { new Tuple<DishType, string>(DishType.Side, "potato"), 2 },
-                { new Tuple<DishType, string>(DishType.Dessert, "cake"), 1 }
+                { (DishType.Entree, "steak"), 1 },
+                { (DishType.Side, "potato"), 2 },
+                { (DishType.Dessert, "cake"), 1 }
             };
 
             //act
@@ -724,11 +724,11 @@ namespace GFT.DeveloperPracticum.UnitTests
             var input = "afternoon, 1, 2, 2, 4";
             var exception = default(Exception);
             var processResult = default(InputProcessResult);
-            var expectedOutput = new Dictionary<Tuple<DishType, string>, int>()
+            var expectedOutput = new Dictionary<(DishType, string), int>()
             {
-                { new Tuple<DishType, string>(DishType.Entree, "steak"), 1 },
-                { new Tuple<DishType, string>(DishType.Side, "potato"), 2 },
-                { new Tuple<DishType, string>(DishType.Dessert, "cake"), 1 }
+                { (DishType.Entree, "steak"), 1 },
+                { (DishType.Side, "potato"), 2 },
+                { (DishType.Dessert, "cake"), 1 }
             };
 
             //act
@@ -765,11 +765,11 @@ namespace GFT.DeveloperPracticum.UnitTests
             var input = default(string);
             var exception = default(Exception);
             var processResult = default(InputProcessResult);
-            var expectedOutput = new Dictionary<Tuple<DishType, string>, int>()
+            var expectedOutput = new Dictionary<(DishType, string), int>
             {
-                { new Tuple<DishType, string>(DishType.Entree, "steak"), 1 },
-                { new Tuple<DishType, string>(DishType.Side, "potato"), 2 },
-                { new Tuple<DishType, string>(DishType.Dessert, "cake"), 1 }
+                { (DishType.Entree, "steak"), 1 },
+                { (DishType.Side, "potato"), 2 },
+                { (DishType.Dessert, "cake"), 1 }
             };
 
             //act
@@ -804,11 +804,11 @@ namespace GFT.DeveloperPracticum.UnitTests
             var input = "morning";
             var exception = default(Exception);
             var processResult = default(InputProcessResult);
-            var expectedOutput = new Dictionary<Tuple<DishType, string>, int>()
+            var expectedOutput = new Dictionary<(DishType, string), int>()
             {
-                { new Tuple<DishType, string>(DishType.Entree, "steak"), 1 },
-                { new Tuple<DishType, string>(DishType.Side, "potato"), 2 },
-                { new Tuple<DishType, string>(DishType.Dessert, "cake"), 1 }
+                { (DishType.Entree, "steak"), 1 },
+                { (DishType.Side, "potato"), 2 },
+                { (DishType.Dessert, "cake"), 1 }
             };
 
             //act

@@ -27,7 +27,7 @@ namespace GFT.DeveloperPracticum.Services
         }
 
         public Try<Exception, string> Process(
-            IReadOnlyDictionary<Tuple<TimeOfDayType, DishType>, Dish> menu,
+            IReadOnlyDictionary<(TimeOfDayType, DishType), Dish> menu,
             string input
         )
         {

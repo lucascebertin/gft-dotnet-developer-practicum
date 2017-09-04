@@ -8,11 +8,11 @@ namespace GFT.DeveloperPracticum.Kernel.Models
     public class InputProcessResult
     {
         public bool HasInvalidInput { get; private set; }
-        public Dictionary<Tuple<DishType, string>, int> ParsedInput { get; private set; }
+        public Dictionary<(DishType, string), int> ParsedInput { get; private set; }
 
         public InputProcessResult(
             bool hasInvalidInput,
-            Dictionary<Tuple<DishType, string>, int> parsedInput
+            Dictionary<(DishType, string), int> parsedInput
         )
         {
             HasInvalidInput = hasInvalidInput;

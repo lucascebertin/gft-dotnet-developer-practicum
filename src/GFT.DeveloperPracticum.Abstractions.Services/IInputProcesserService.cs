@@ -8,9 +8,9 @@ namespace GFT.DeveloperPracticum.Abstractions.Services
 {
     public interface IInputProcessorService
     {
-        Try<ArgumentException, Unit> Setup(IReadOnlyDictionary<Tuple<TimeOfDayType, DishType>, Dish> menuData);
+        Try<ArgumentException, Unit> Setup(IReadOnlyDictionary<(TimeOfDayType, DishType), Dish> menuData);
         Try<Exception, InputProcessResult> Process(string input);
-        bool TryAddOrUpdateDishesAmount(Dictionary<Tuple<DishType, string>, int> dishes, TimeOfDayType timeOfDay, DishType dishType, string dish);
+        bool TryAddOrUpdateDishesAmount(Dictionary<(DishType, string), int> dishes, TimeOfDayType timeOfDay, DishType dishType, string dish);
         string ParseTimeOfDay(IList<string> cleanedInputList);
     }
 }
