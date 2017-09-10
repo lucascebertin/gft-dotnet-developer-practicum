@@ -47,7 +47,7 @@ namespace GFT.DeveloperPracticum.UnitTests
 
             //act
             var comparison = (firstDish == secondDish);
-            
+
             //assert
             comparison.Should()
                 .Be(true, "Because the algorithm calculates the hash based on the property values");

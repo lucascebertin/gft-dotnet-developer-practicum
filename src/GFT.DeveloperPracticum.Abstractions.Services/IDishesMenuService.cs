@@ -8,7 +8,7 @@ namespace GFT.DeveloperPracticum.Abstractions.Services
     {
         string FindDish(TimeOfDayType timeOfDay, DishType dishType);
         bool IsValidAmount(TimeOfDayType timeOfDay, DishType dishType, int amount);
-        bool TryAddDish(Tuple<TimeOfDayType, DishType> id, Dish dish);
+        bool TryAddDish((TimeOfDayType, DishType) id, Dish dish);
         bool HasDishes();
     }
 }

@@ -8,6 +8,6 @@ namespace GFT.DeveloperPracticum.Abstractions.Services
 {
     public interface IProcessManagerService
     {
-        Try<Exception, string> Process(IReadOnlyDictionary<Tuple<TimeOfDayType, DishType>, Dish> menu, string input);
+        Try<Exception, string> Process(IReadOnlyDictionary<(TimeOfDayType, DishType), Dish> menu, string input);
     }
 }

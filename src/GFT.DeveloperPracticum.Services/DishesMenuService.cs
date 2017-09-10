@@ -8,14 +8,14 @@ namespace GFT.DeveloperPracticum.Services
 {
     public sealed class DishesMenuService : IDishesMenuService
     {
-        private bool disposedValue = false;
+        private bool disposedValue;
 
-        private readonly IDictionary<Tuple<TimeOfDayType, DishType>, Dish> _dishes =
-            new Dictionary<Tuple<TimeOfDayType, DishType>, Dish>();
+        private readonly IDictionary<(TimeOfDayType, DishType), Dish> _dishes =
+            new Dictionary<(TimeOfDayType, DishType), Dish>();
 
-        public bool TryAddDish(Tuple<TimeOfDayType, DishType> id, Dish dish)
+        public bool TryAddDish((TimeOfDayType, DishType) id, Dish dish)
         {
-            if (id == null || dish == null)
+            if ( dish == null)
                 return false;
 
             var canAddDish = !_dishes.ContainsKey(id)
@@ -29,7 +29,7 @@ namespace GFT.DeveloperPracticum.Services
 
         public string FindDish(TimeOfDayType timeOfDay, DishType dishType)
         {
-            var key = new Tuple<TimeOfDayType, DishType>(timeOfDay, dishType);
+            var key = (timeOfDay, dishType);
             var output = string.Empty;
 
             if (_dishes.ContainsKey(key))
@@ -45,7 +45,7 @@ namespace GFT.DeveloperPracticum.Services
 
         public bool IsValidAmount(TimeOfDayType timeOfDay, DishType dishType, int amount)
         {
-            var key = new Tuple<TimeOfDayType, DishType>(timeOfDay, dishType);
+            var key =  (timeOfDay, dishType);
             var valid = false;
 
             if (_dishes.ContainsKey(key) && amount >= 1)

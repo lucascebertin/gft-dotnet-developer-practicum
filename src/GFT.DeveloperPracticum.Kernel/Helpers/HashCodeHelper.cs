@@ -14,7 +14,7 @@ namespace GFT.DeveloperPracticum.Kernel.Helpers
                 {
                     unchecked
                     {
-                        int hash = (int)HASHING_BASE;
+                        var hash = (int)HASHING_BASE;
 
                         foreach (var clientObject in p)
                         {

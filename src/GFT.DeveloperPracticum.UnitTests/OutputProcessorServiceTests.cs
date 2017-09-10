@@ -22,11 +22,11 @@ namespace GFT.DeveloperPracticum.UnitTests
 
             var input = new InputProcessResult(
                 false,
-                new Dictionary<Tuple<DishType, string>, int>()
+                new Dictionary<(DishType, string), int>
                 {
-                    { new Tuple<DishType, string>(DishType.Entree, "eggs"), 1 },
-                    { new Tuple<DishType, string>(DishType.Side, "toast"), 1 },
-                    { new Tuple<DishType, string>(DishType.Drink, "coffee"), 1 }
+                    { (DishType.Entree, "eggs"), 1 },
+                    { (DishType.Side, "toast"), 1 },
+                    { (DishType.Drink, "coffee"), 1 }
                 }
             );
 
@@ -49,11 +49,11 @@ namespace GFT.DeveloperPracticum.UnitTests
 
             var input = new InputProcessResult(
                 true,
-                new Dictionary<Tuple<DishType, string>, int>()
+                new Dictionary<(DishType, string), int>
                 {
-                    { new Tuple<DishType, string>(DishType.Entree, "eggs"), 1 },
-                    { new Tuple<DishType, string>(DishType.Side, "toast"), 1 },
-                    { new Tuple<DishType, string>(DishType.Drink, "coffee"), 1 }
+                    { (DishType.Entree, "eggs"), 1 },
+                    { (DishType.Side, "toast"), 1 },
+                    { (DishType.Drink, "coffee"), 1 }
                 }
             );
 
@@ -76,11 +76,11 @@ namespace GFT.DeveloperPracticum.UnitTests
 
             var input = new InputProcessResult(
                 false,
-                new Dictionary<Tuple<DishType, string>, int>()
+                new Dictionary<(DishType, string), int>
                 {
-                    { new Tuple<DishType, string>(DishType.Entree, "eggs"), 1 },
-                    { new Tuple<DishType, string>(DishType.Side, "toast"), 1 },
-                    { new Tuple<DishType, string>(DishType.Drink, "coffee"), 3 }
+                    { (DishType.Entree, "eggs"), 1 },
+                    { (DishType.Side, "toast"), 1 },
+                    { (DishType.Drink, "coffee"), 3 }
                 }
             );
 
@@ -119,11 +119,11 @@ namespace GFT.DeveloperPracticum.UnitTests
 
             var input = new InputProcessResult(
                 false,
-                new Dictionary<Tuple<DishType, string>, int>()
+                new Dictionary<(DishType, string), int>
                 {
-                    { new Tuple<DishType, string>(DishType.Entree, "eggs"), -1 },
-                    { new Tuple<DishType, string>(DishType.Side, "toast"), -2 },
-                    { new Tuple<DishType, string>(DishType.Drink, "coffee"), -4 }
+                    { (DishType.Entree, "eggs"), -1 },
+                    { (DishType.Side, "toast"), -2 },
+                    { (DishType.Drink, "coffee"), -4 }
                 }
             );
 

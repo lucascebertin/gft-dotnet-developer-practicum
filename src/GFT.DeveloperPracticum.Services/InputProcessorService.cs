@@ -23,7 +23,7 @@ namespace GFT.DeveloperPracticum.Services
         }
 
         public Try<ArgumentException, Unit> Setup(
-            IReadOnlyDictionary<Tuple<TimeOfDayType, DishType>, Dish> menuData
+            IReadOnlyDictionary<(TimeOfDayType, DishType), Dish> menuData
         )
         {
             if (menuData == null || menuData.Count == 0)
@@ -60,7 +60,7 @@ namespace GFT.DeveloperPracticum.Services
 
             var hasInvalidInput = false;
             var timeOfDay = default(TimeOfDayType);
-            var parsedInput = new Dictionary<Tuple<DishType, string>, int>();
+            var parsedInput = new Dictionary<(DishType, string), int>();
 
             var slicedInput = input.Split(
                 new char[] { ',' },
@@ -106,7 +106,7 @@ namespace GFT.DeveloperPracticum.Services
             }
 
             return new InputProcessResult(
-                hasInvalidInput, 
+                hasInvalidInput,
                 parsedInput
             );
         }
@@ -120,15 +120,15 @@ namespace GFT.DeveloperPracticum.Services
 
             return _availableTimesOfDay.FirstOrDefault(
                 str => string.Compare(
-                    firstInput, 
-                    str, 
+                    firstInput,
+                    str,
                     StringComparison.CurrentCultureIgnoreCase
                 ) == 0
             );
         }
 
         public bool TryAddOrUpdateDishesAmount(
-            Dictionary<Tuple<DishType, string>, int> dishes,
+            Dictionary<(DishType, string), int> dishes,
             TimeOfDayType timeOfDay,
             DishType dishType,
             string dish
@@ -138,7 +138,7 @@ namespace GFT.DeveloperPracticum.Services
                 return false;
 
             var hasValidAmount = true;
-            var key = new Tuple<DishType, string>(dishType, dish);
+            var key =(dishType, dish);
 
             if (dishes.ContainsKey(key))
             {
